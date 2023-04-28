@@ -1,0 +1,470 @@
+/*
+
+Programa: Lista 4B ;
+Autor: Pedro Henrique Honorio Saito ;
+Data : 29/09/2022 ;
+Descrição: Praticar comandos de controle fluxo ;
+
+*/
+
+/* Exercício 1 */
+
+#include <stdio.h>
+
+/* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int i = 1;
+
+    while (i <= 20)
+    {
+        if (i == 2)
+        {
+            ++i; 
+            continue;
+        }
+        
+        if (i == 5)
+        break;
+
+        printf("i = %d\n", i);
+        ++i;        
+    }
+
+ return 0;
+}
+
+/*
+    (Saída):
+    i = 1
+    i = 3
+    i = 4
+    
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 2 */
+
+#include <stdio.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variávies inteiras */
+    int idade = 0, cont = 0, menor = 0, maior = 0;
+    float media = 0.;
+    
+    printf("Insira os valores correspondentes à idades das pessoas:\n> ");
+    
+    /* Validação da entrada para caracteres */
+    while(scanf("%d", &idade) == 0)
+    {
+        getchar();
+        printf(" [ Valor inválido ] \n");
+    }
+
+    printf("\n");
+    
+    ++cont;
+    menor = idade;
+
+    /* "Enquanto idade não for zero" */
+    while (idade)
+    {
+        /* Atualização da menor idade presente na amostra */
+        if (idade < menor)
+        menor = idade;
+
+        /* Atualização da maior idade presente na amostra */
+        if (idade > maior)
+        maior = idade;
+
+        printf("> ");
+
+        /* Validação da entrada para valores negativos ou caracteres */
+        while(scanf("%d", &idade) == 0)
+        {
+            getchar();
+            printf(" [ Valor inváido ] \n");
+        }
+
+        if (idade <= 0) break;
+
+        /* Adição consecutiva de cada idade inserida na variável media */
+        media += idade;
+
+        getchar();
+        printf("\n");
+
+        /* Contador para identificar o número de indivíduos na amostra */
+        ++cont;
+    }
+
+    /* Impressão do resultado referente à média, ao número de pessoas, bem como as maiores 
+       e menores idades presentes. 
+    */ 
+    printf("A média das idades coletadas foi %.1f\n", (media/cont));
+    printf("O número total de pessoas foi %d\n", cont);
+    printf("A maior idade entre as coletadas foi %d\n", maior);
+    printf("A menor idade entre as coletadas foi %d\n\n", menor);
+
+ return 0;
+}
+
+/* 
+    (Entrada):
+    12
+    76
+    54
+    0
+
+
+
+    (Saída):
+    Insira os valores correspondentes à idades das pessoas:
+    > 
+    
+    > 
+    
+    > 
+    
+    > 
+    A média das idades coletadas foi 43.3
+    O número total de pessoas foi 3
+    A maior idade entre as coletadas foi 76
+    A menor idade entre as coletadas foi 12
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 3 */
+
+#include <stdio.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras e em ponto flutuante */
+    float nota = 0., media = 0.;
+    int cont = 0;
+  
+    printf("Insira o valor correspondente a cada nota (maiores que zero):");
+
+    /* Permite a adição de no máximo 3 valores à variável media, desde que não seja inserido
+       um valor nulo. 
+    */
+    while(nota >= 0 && cont < 3)
+    {
+        printf("\n> ");
+
+        /* Validação da entrada para caracteres */
+        while(scanf("%f", &nota) == 0);
+
+        if (nota < 0)
+        {
+            printf("Programa encerrado..\n\n");
+            return 0;
+        }
+
+        media += nota;
+        ++cont;
+    }
+
+    printf("Média resultante das notas coletadas : %.1f\n\n", (media/cont));
+
+ return 0;
+}
+
+/*
+    (Entrada):
+    6
+    5.5
+    3
+
+    (Saída):
+    Insira o valor correspondente a cada nota (maiores que zero):
+    > 
+    
+    > 
+    
+    > 
+
+    Média resultante das notas coletadas : 4.8
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 4 */
+
+#include <stdio.h>
+#include <locale.h>
+
+int main()
+{
+    /* Declarando e inicializando variáveis inteiras e decimais */
+    float compra = 0.;
+    int select = 0;
+
+    /* Atribuindo o valor correspondente ao preço da compra à variável "compra" */
+    printf("Insira o valor referente a sua compra: ");
+    while (scanf("%f", &compra) == 0 || compra < 0)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+         
+    }
+
+    printf("Selecione qual modalidade de cliente você se encaixa: \n");
+    printf("| 1. Cliente comum | | 2. Funcionário | | 3. Cliente vip |\n>"); 
+    scanf("%d", &select);  
+
+    getchar();
+
+    switch(select)
+    {
+        case 1:
+        printf("O valor total a ser pago é %.2f\n\n", compra);
+        break;
+
+        case 2:
+        printf("O valor total a ser pago é %.2f\n\n", (compra * 0.9));
+        break;
+
+        case 3:
+        printf("O valor total a ser pago é %.2f\n\n", (compra * 0.5));
+        break;
+
+        default:
+        printf(" [Valor inserido inválido] \n\n");
+        break;
+    }
+
+
+ return 0;
+}
+
+/*
+    (Entrada):
+    13.5
+    2
+    12.15
+    
+    
+    (Saída):
+    Insira o valor referente a sua compra:
+    Selecione qual modalidade de cliente você se encaixa: 
+    | 1. Cliente comum | | 2. Funcionário | | 3. Cliente vip |
+    >
+    O valor total a ser pago é 12.15
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 5 */
+
+#include <stdio.h>
+
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int mes = 0;
+    
+    printf("Insira o valor correspondente ao mês : ");
+
+    /* Validação da entrada para caracteres e valores compreeendidos fora do 
+       intervalo de 0 a 12. Atribuição do valor correspondente ao mês à variável "mes".
+    */
+    while(scanf("%d", &mes) == 0 || mes <= 0 || mes > 12)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+    }
+
+    /* Comando "switch" para imprimir o mês correspondente ao número atribuído a essa variável */
+    switch(mes)
+    {
+        case 1:
+        printf("O mês correspondente é Janeiro.\n\n");
+
+        break;
+        case 2:
+        printf("O mês correspondente é Fevereiro.\n\n");
+
+        break;
+        case 3:
+        printf("O mês correspondente é Março.\n\n");
+
+        break;
+        case 4:
+        printf("O mês correspondente é Abril.\n\n");
+
+        break;
+        case 5:
+        printf("O mês correspondente é Maio.\n\n");
+
+        break;
+        case 6:
+        printf("O mês correspondente é Junho.\n\n");
+
+        break;
+        case 7:
+        printf("O mês correspondente é Julho.\n\n");
+
+        break;
+        case 8:
+        printf("O mês correspondente é Agosto.\n\n");
+
+        break;
+        case 9:
+        printf("O mês correspondente é Setembro.\n\n");
+
+        break;
+        case 10:
+        printf("O mês correspondente é Outubro.\n\n");
+
+        break;
+        case 11:
+        printf("O mês correspondente é Novembro.\n\n");
+
+        break;
+        default:
+        printf("O mês correspondente é Dezembro.\n\n");
+
+        break;
+    }
+
+ return 0;
+}
+
+/*
+    (Entrada):
+    10
+
+
+    (Saída):
+    Insira o valor correspondente ao mês : 
+    O mês correspondente é Outubro.
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 6 */
+
+#include <stdio.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int num = 0,
+        select = 0,
+        num2 = 0;
+
+    do{
+    /* Tabela para selecionar tipo de conversão de base */
+    printf("Selecione o método de conversão de base da tabela :\n\n");
+    printf(" < Conversão de Base >\n");
+    printf("1: Decimal para hexadecimal\n");
+    printf("2: Hexadecimal para decimal\n");
+    printf("3: Decimal para octal\n");
+    printf("4: Octal para decimal\n");
+    printf("5: Encerra\n\n>");
+
+    /* Validação da entrada para caracteres e números que não estão compreendidos no intervalo de 1 a 5 */
+    while((scanf("%d", &select) == 0) || select < 1 || select > 5)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n> ");
+    }
+    
+    /* 
+       Comando "switch" seleciona qual a forma de conversão, permitindo que tanto as
+       entradas quanto as bases de destino estejam de acordo.
+    */
+    switch(select)
+    {
+        case 1:
+        printf("Digite o número da base de origem : ");
+        scanf("%d", &num);
+        getchar();
+
+        printf("O número decimal %d na base hexadecimal é : %#x\n\n", num, num);
+        
+        break;
+        case 2:
+        printf("Digite o número da base de origem : ");
+        scanf("%xd", &num);
+        getchar();
+
+        printf("O número hexadecimal %#x na base decimal é : %d\n\n", num, num);
+        
+        break;
+        case 3:
+        printf("Digite o número da base de origem : ");
+        scanf("%d", &num);
+        getchar();
+
+        printf("O número decimal %d na base octal é : %o\n\n", num, num);
+        
+        break;
+        case 4:
+        printf("Digite o número da base de origem : ");
+        scanf("%od", &num);
+        getchar();
+
+        printf("O número octal %o na base decimal é : %d\n\n", num, num);
+        
+        break;
+        case 5:
+
+        printf(" [ Programa encerrado ]\n\n");
+        return 0;
+        break;
+
+        default:
+        printf(" [ Valor inserido não é válido ]\n\n");
+        break;
+    }
+
+    printf("Caso deseja retornar ao menu, aperte '1', caso deseja encerrar o programa, aperte '0'.\n> ");
+    
+    /* Validação para entrada de caracteres */
+    while(scanf("%d", &num2) == 0)
+    {
+        getchar();
+        printf(" [ Valor inválido ] \n\n> ");
+    }
+
+    }while(num2 == 1);
+
+ return 0;
+}
+
+/* 
+    (Entrada):
+    2
+    12a
+    0
+
+
+    (Saída):
+    < Conversão de Base >
+    1: Decimal para hexadecimal
+    2: Hexadecimal para decimal
+    3: Decimal para octal
+    4: Octal para decimal
+    5: Encerra
+    
+    >
+    Digite o número da base de origem : 
+    O número hexadecimal 0x12a na base decimal é : 298
+    Caso deseja retornar ao menu, aperte '1', caso deseja encerrar o programa, aperte '0'.
+    >
+    
+*/

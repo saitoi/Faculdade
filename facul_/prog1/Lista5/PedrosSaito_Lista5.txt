@@ -1,0 +1,1495 @@
+/*
+
+Programa: Lista 5 ;
+Autor: Pedro Henrique Honorio Saito ;
+Data : 29/09/2022 ;
+Descrição: Lista 5 Praticar Vetores ;
+
+*/
+
+/* < Exercício 1 > */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Chamando funções situadas após a "int main" */
+void clean_buf(char clear);
+int size_str(char str[100]);
+
+/* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras e cadeias de caracteres */
+    int cont1 = 0,
+        cont2 = 0,
+        cont3 = 0,
+        select = 0;
+    char str1[100] = {},
+         str2[100] = {},
+         str3[100] = {},
+         clear, /* Permite "limpar" o buffer */
+         wrd;
+
+    printf("\n\nDigite o conteúdo referente a primeira string (sem espaço): \n> ");
+    scanf("%s", str1);
+
+    /* Função permite limpar buffer */
+    clean_buf(clear);
+
+    /* Modificando conteúdo de string 2 ("str2") */
+    printf("Digite o conteúdo referente a segunda string (sem espaço): \n> ");
+    scanf("%s", str2);
+    clean_buf(clear);
+
+    /* Impressão do menu principal com cada função */
+    printf("\n [ MENU ]\n\n");
+    printf(" 1 - Inversão das strings\n");
+    printf(" 2 - Concatenação das strings\n");
+    printf(" 3 - Comparação de strings\n");
+    printf(" 4 - Aparição de dado caractere\n");
+    printf(" 5 - ENCERRE \n\n");
+
+    printf("Selecione a opção referente a função desejada: \n> ");
+    while (scanf("%d", &select) == 0 || select < 0 || select > 5)
+    {
+        clean_buf(clear);
+        printf("\n [ Valor Inválido ] \n\n> ");
+    }
+
+    /* Seleção da função desejada */
+    switch (select)
+    {
+    case 1:
+        printf("A inversão da primeira string resulta em: \n");
+
+        /* Contador que "vai" do último caractere para o primeiro na string 1 */
+        for (cont1 = size_str(str1); cont1 > -1; --cont1)
+            printf("%c", str1[cont1]);
+
+        printf("\n\nA inversão da segunda string resulta em: \n");
+
+        /* Contador "vai" do último caractere para o primeiro na string 2 */
+        for (cont2 = size_str(str2); cont2 > -1; --cont2)
+            printf("%c", str2[cont2]);
+
+        break;
+    case 2:
+
+        for (cont1 = 0; str1[cont1] != '\0'; ++cont1, ++cont2)
+            str3[cont2] = str1[cont1];
+        cont1 = 0;
+
+        for (cont1 = 0; str2[cont1] != '\0'; ++cont1, ++cont2)
+            str3[cont2] = str2[cont1];
+
+        printf("\nA concatenação de ambas strings resulta em: \n> %s", str3);
+
+        break;
+    case 3:
+
+        if (size_str(str1) > size_str(str2))
+            printf("\nA primeira string \"str1\" é maior que a segunda \"str2\".\n\n");
+        else if (size_str(str1) == size_str(str2))
+            printf("\nAs duas strings \"str1\" e \"str2\" possuem o mesmo tamanho.\n\n");
+        else
+            printf("\nA segunda string \"str2\" é maior que a primeira \"str1\".\n\n ");
+
+        break;
+    case 4:
+        clean_buf(clear);
+
+        /* Informando qual caractere o programa necessita avaliar o número de repetições */
+        printf("Selecione o caractere que deseja contar o número de repetições: \n>");
+        scanf("%c", &wrd);
+        clean_buf(clear);
+
+        /* Informa a posição do caractere + número de ocorrências */
+        while (str1[cont1] != '\0')
+        {
+            if (str1[cont1] == wrd)
+            {
+                ++cont2;
+                printf("Posições do caractere %c na primeira string: %d\n", wrd, cont1);
+           }
+            ++cont1;
+        }
+
+        printf("Número de repetições do caractere %c na primeira string: %d\n\n", wrd, cont2);
+        cont2 = 0;
+        cont1 = 0;
+
+        while (str2[cont1] != '\0')
+        {
+            if (str2[cont1] == wrd)
+            {
+                ++cont2;
+                printf("Posições do caractere %c na segunda string: %d\n", wrd, cont1);
+           }
+            ++cont1;
+        }
+
+        printf("Número de repetições do caractere %c na segunda string: %d\n\n", wrd, cont2);
+
+        break;
+    case 5:
+
+        /* Encerramento do programa */
+        printf("Programa encerrado..\n\n");
+        return 0;
+
+        break;
+    default:
+
+        printf("\n [ Valor Inválido ] ..\n\nPrograma encerrado..");
+        break;
+    }
+
+    printf("\n\n");
+
+    return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+/* Função para contar número de caracteres da string */
+int size_str(char str[100])
+{
+    int cont = 0;
+    while (str[cont] != '\0')
+        ++cont;
+
+    return cont;
+}
+
+/*
+    Valores testados no programa:
+
+    (Entradas):
+    palavra
+    word
+    1
+
+
+    (Saídas):
+    Digite o conteúdo referente a primeira string (sem espaço): 
+    > palavra 
+    Digite o conteúdo referente a segunda string (sem espaço): 
+    > word
+
+     [ MENU ]
+
+     1 - Inversão das strings
+     2 - Concatenação das strings
+     3 - Comparação de strings
+     4 - Aparição de dado caractere
+     5 - ENCERRE 
+
+    Selecione a opção referente a função desejada: 
+    > 1
+    A inversão da primeira string resulta em: 
+    arvalap
+
+    A inversão da segunda string resulta em: 
+    drow
+
+
+X ----------------------------------------------------- X
+
+    (Entradas - Tratamento de erro):
+    cadeia
+    decaracteres
+    -1
+    9
+    4
+    a
+
+
+    (Saídas):
+    Digite o conteúdo referente a primeira string (sem espaço): 
+    > cadeia 
+    Digite o conteúdo referente a segunda string (sem espaço): 
+    > decaracteres
+
+     [ MENU ]
+
+     1 - Inversão das strings
+     2 - Concatenação das strings
+     3 - Comparação de strings
+     4 - Aparição de dado caractere
+     5 - ENCERRE 
+
+    Selecione a opção referente a função desejada: 
+    > -1
+
+     [ Valor Inválido ] 
+
+    > 9
+
+     [ Valor Inválido ] 
+
+    > 4
+    Selecione o caractere que deseja contar o número de repetições: 
+    >a
+    Posições do caractere a na primeira string: 1
+    Posições do caractere a na primeira string: 5
+    Número de repetições do caractere a na primeira string: 2
+
+    Posições do caractere a na segunda string: 3
+    Posições do caractere a na segunda string: 5
+    Número de repetições do caractere a na segunda string: 2
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* < Exercício 2 > */
+
+#include <stdio.h>
+
+/* Chamando funções situadas após "int main" */
+void clean_buf(char clear);
+
+
+/* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int mtrz1[2][3] = {},
+        mtrz2[2][3] = {},
+        cont1 = 0,
+        cont2 = 0;
+    char clear;
+
+    /* Inserção de valores na primeira matriz */
+    for (cont1 = 0; cont1 < 2; ++cont1)
+        for (cont2 = 0; cont2 < 3; ++cont2)
+        {
+            printf("Altere o valor na Linha %d e Coluna %d na Matriz 1: ",cont1 ,cont2);
+            
+            /* Comando de repetição para validação de caracteres */
+            while(scanf("%d", &mtrz1[cont1][cont2]) == 0)
+            {
+                clean_buf(clear);
+                printf("\n [ Valor Inválido ].. \n\n>");
+            }
+
+            printf("\n");
+        }
+
+    /* Inserção de valores na segunda matriz */
+    for (cont1 = 0; cont1 < 2; ++cont1)
+        for (cont2 = 0; cont2 < 3; ++cont2)
+        {
+            printf("Altere o valor na Linha %d e Coluna %d na Matriz 2: ",cont1 ,cont2);
+            
+            /* Comando de repetição para validação de caracteres */
+            while(scanf("%d", &mtrz2[cont1][cont2]) == 0)
+            {
+                clean_buf(clear);
+                printf("\n [ Valor Inválido ].. \n\n>");
+            }
+
+            printf("\n");
+        }
+
+    printf("A matriz resultante está exibida abaixo: \n");
+
+    /* Impressão dos valores da soma de ambas as matrizes */
+    for (cont1 = 0; cont1 < 2; ++cont1)
+    {
+        for (cont2 = 0; cont2 < 3; ++cont2)
+            printf("%d  ", mtrz1[cont1][cont2] + mtrz2[cont1][cont2]);
+        
+        printf("\n");
+    }
+    
+    printf("\n\n");
+
+ return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+/*
+    Valores testados no programa:
+
+    (Entradas):
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    1
+    2
+
+
+
+    (Saídas):
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 1: 1
+
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 1: 2
+
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 1: 3
+
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 1: 4
+
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 1: 5
+
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 1: 6
+
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 2: 7
+
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 2: 8
+
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 2: 9
+
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 2: 0
+
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 2: 1
+
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 2: 2
+
+    A matriz resultante está exibida abaixo: 
+    8  10  12  
+    4  6  8  
+
+
+X ----------------------------------------------------- X
+
+    (Entradas - Tratamento de erro):
+    1
+    2
+    3
+    w
+    4
+    5
+    6
+    yu
+    8
+    9
+    0
+    5
+    e
+    3
+
+
+    (Saídas):
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 1: 1
+
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 1: 2
+
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 1: 3
+
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 1: w
+
+     [ Valor Inválido ].. 
+
+    >4
+
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 1: 5
+
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 1: 6
+
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 2: yu
+
+     [ Valor Inválido ].. 
+
+    >7
+
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 2: 8
+
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 2: 9
+
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 2: 0
+
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 2: 5
+
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 2: e
+
+     [ Valor Inválido ].. 
+
+    >3
+
+    A matriz resultante está exibida abaixo: 
+    8  10  12  
+    4  10  9  
+
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* < Exercício 3 > */
+
+#include <stdio.h>
+#define TAM 10
+
+/* Chamando funções situadas após "int main" */
+void clean_buf(char clear);
+
+/* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int n[10] = {}, cont = 0,
+        min = 0, max = 0,
+        par = 0, sum = 0,
+        value = 0;
+    char clear;
+    
+    for (cont = 0; cont < TAM; ++cont)   
+        n[cont] = 0;
+    
+    printf("Insira uma sequência de dez números inteiros: \n> ");
+
+    /* Inicializando a sequência de dez números inteiros pelo usuário */
+    for (cont = 0; cont < TAM; ++cont)
+    {
+        while(scanf("%d", &n[cont]) == 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n> ");
+        }
+        printf("\n\n> ");
+    }
+
+    /* Inicializando o valor mínimo e máximo com um valor aleatório da sequência */
+    min = n[0];
+    max = n[0];
+
+    /* Avaliando máximo e mínimo valores entre a sequência de dez termos */
+    for (cont = 0; cont < TAM; ++cont)
+    {
+        if (n[cont] < min)
+            min = n[cont];
+        if (n[cont] > max)
+            max = n[cont];
+
+        /* Determinando número de termos pares */
+        if ((n[cont] % 2) == 0)
+            ++par;
+        
+        /* Determinando a soma de todos os termos da sequência */
+        sum += n[cont];
+    }
+
+    /* Impressão dos resultados esperados pelo enunciado */
+    printf("O valor mínimo da sequência a seguir é : %d\n", min);
+    printf("O valor máximo da sequência a seguir é : %d\n", max);
+    printf("A quantidade de termos pares da sequência são : %d\n", par);
+    printf("A soma de todos os termos da sequência é : %d\n\n", sum);
+    
+    printf("Deseja encontrar algum valor na sequência de termos? \n\n> ");
+    while (scanf("%d", &value) == 0)
+    {
+        clean_buf(clear);
+        printf("\n [ Valor Inválido ] \n\n");
+    }
+
+    for (cont = 0; cont < TAM; ++cont)
+        if (n[cont] == value) printf("\nO termo %d está na posição %d da sequência.\n\n", value, cont);
+
+ return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+/*
+    Valores testados no programa:
+
+    (Entradas):
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    5
+
+
+
+    (Saídas):
+    Insira uma sequência de dez números inteiros: 
+    > 1
+
+
+    > 2
+
+
+    > 3
+
+
+    > 4
+
+
+    > 5
+
+
+    > 6
+
+
+    > 7
+
+
+    > 8
+
+
+    > 9
+
+
+    > 0
+
+
+    > O valor mínimo da sequência a seguir é : 0
+    O valor máximo da sequência a seguir é : 9
+    A quantidade de termos pares da sequência são : 5
+    A soma de todos os termos da sequência é : 45
+
+    Deseja encontrar algum valor na sequência de termos? 
+
+    > 5
+    O termo 5 está na posição 4 da sequência.
+
+X ----------------------------------------------------- X
+
+    (Entradas - Tratamento de erro):
+    11
+    w
+    3
+    6
+    y
+    34
+    r
+    kjkj
+    7
+    7
+    9
+    0
+    1
+    23
+    34
+
+
+    (Saídas):
+    Insira uma sequência de dez números inteiros: 
+    > 11
+
+
+    > w
+
+     [ Valor Inválido ] 
+
+    > 3
+
+
+    > 6
+
+
+    > y
+
+     [ Valor Inválido ] 
+
+    > 34
+
+
+    > r
+
+     [ Valor Inválido ] 
+
+    > kjkj
+
+     [ Valor Inválido ] 
+
+    > 7
+
+
+    > 7
+
+
+    > 9
+
+
+    > 0
+
+
+    > 1
+
+
+    > 23
+
+
+    > O valor mínimo da sequência a seguir é : 0
+    O valor máximo da sequência a seguir é : 34
+    A quantidade de termos pares da sequência são : 3
+    A soma de todos os termos da sequência é : 101
+
+    Deseja encontrar algum valor na sequência de termos? 
+
+    > 34
+    O termo 34 está na posição 3 da sequência.
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* < Exercício 4 > */
+
+#include <stdio.h>
+#define TAM 5
+
+/* Chamando funções situadas após "int main" */
+void clean_buf(char clear);
+
+/* Função principal não recebe argumentos */
+int main (void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int mtrz1[5][5] = {}, mtrz2[5][5] = {}, mtrzr[5][5] = {},
+    cont1 = 0, cont2 = 0, cont3 = 0,
+    aux = 0;
+    char clear;
+
+    /* Inserindo valores inteiros na primeira matriz */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        for (cont2 = 0; cont2 < TAM; ++cont2)
+        {
+            printf("Altere o valor na Linha %d e Coluna %d na Matriz 1 : ", cont1, cont2);
+            while (scanf("%d", &mtrz1[cont1][cont2]) == 0)
+            {
+                clean_buf(clear);
+                printf("\n [ Valor Inváido ] \n\n>");
+            }
+        }
+
+    /* Inserindo valores inteiros na segunda matriz */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        for (cont2 = 0; cont2 < TAM; ++cont2)
+        {
+            printf("Altere o valor na Linha %d e Coluna %d na Matriz 2 : ", cont1, cont2);
+            while (scanf("%d", &mtrz2[cont1][cont2]) == 0)
+            {
+                clean_buf(clear);
+                printf("\n [ Valor Inváido ] \n\n>");
+            }
+        }
+    
+    /* Algoritmo para multiplicação de ambas as matrizes */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        for (cont2 = 0; cont2 < TAM; ++cont2)
+        {
+            aux = 0;
+            for (cont3 = 0; cont3 < TAM; ++cont3)
+                aux = mtrz1[cont1][cont3] * mtrz2[cont3][cont2];
+            mtrzr[cont1][cont2] = aux;
+        }
+    
+    printf("\n\nA matriz resultante está exibida abaixo: \n");
+
+    /* Impressão da matriz resultante */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+    {
+        for (cont2 = 0; cont2 < TAM; ++cont2)
+            printf("%d  ", mtrzr[cont1][cont2]);
+        
+        printf("\n");
+    }
+        
+
+ return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+/*
+    Valores testados no programa:
+
+    (Entradas):
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    0
+    
+
+
+    (Saídas):
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 1 : 1
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 1 : 2
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 1 : 3
+    Altere o valor na Linha 0 e Coluna 3 na Matriz 1 : 4
+    Altere o valor na Linha 0 e Coluna 4 na Matriz 1 : 5
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 1 : 6
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 1 : 7
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 1 : 8
+    Altere o valor na Linha 1 e Coluna 3 na Matriz 1 : 9
+    Altere o valor na Linha 1 e Coluna 4 na Matriz 1 : 0
+    Altere o valor na Linha 2 e Coluna 0 na Matriz 1 : 1
+    Altere o valor na Linha 2 e Coluna 1 na Matriz 1 : 2
+    Altere o valor na Linha 2 e Coluna 2 na Matriz 1 : 3
+    Altere o valor na Linha 2 e Coluna 3 na Matriz 1 : 4
+    Altere o valor na Linha 2 e Coluna 4 na Matriz 1 : 5
+    Altere o valor na Linha 3 e Coluna 0 na Matriz 1 : 6
+    Altere o valor na Linha 3 e Coluna 1 na Matriz 1 : 7
+    Altere o valor na Linha 3 e Coluna 2 na Matriz 1 : 8
+    Altere o valor na Linha 3 e Coluna 3 na Matriz 1 : 9
+    Altere o valor na Linha 3 e Coluna 4 na Matriz 1 : 0
+    Altere o valor na Linha 4 e Coluna 0 na Matriz 1 : 1
+    Altere o valor na Linha 4 e Coluna 1 na Matriz 1 : 2
+    Altere o valor na Linha 4 e Coluna 2 na Matriz 1 : 3
+    Altere o valor na Linha 4 e Coluna 3 na Matriz 1 : 4
+    Altere o valor na Linha 4 e Coluna 4 na Matriz 1 : 5
+    Altere o valor na Linha 0 e Coluna 0 na Matriz 2 : 6
+    Altere o valor na Linha 0 e Coluna 1 na Matriz 2 : 7
+    Altere o valor na Linha 0 e Coluna 2 na Matriz 2 : 8
+    Altere o valor na Linha 0 e Coluna 3 na Matriz 2 : 9
+    Altere o valor na Linha 0 e Coluna 4 na Matriz 2 : 0
+    Altere o valor na Linha 1 e Coluna 0 na Matriz 2 : 1
+    Altere o valor na Linha 1 e Coluna 1 na Matriz 2 : 2
+    Altere o valor na Linha 1 e Coluna 2 na Matriz 2 : 3
+    Altere o valor na Linha 1 e Coluna 3 na Matriz 2 : 4
+    Altere o valor na Linha 1 e Coluna 4 na Matriz 2 : 5
+    Altere o valor na Linha 2 e Coluna 0 na Matriz 2 : 6
+    Altere o valor na Linha 2 e Coluna 1 na Matriz 2 : 7
+    Altere o valor na Linha 2 e Coluna 2 na Matriz 2 : 8
+    Altere o valor na Linha 2 e Coluna 3 na Matriz 2 : 9
+    Altere o valor na Linha 2 e Coluna 4 na Matriz 2 : 0
+    Altere o valor na Linha 3 e Coluna 0 na Matriz 2 : 1
+    Altere o valor na Linha 3 e Coluna 1 na Matriz 2 : 2
+    Altere o valor na Linha 3 e Coluna 2 na Matriz 2 : 3
+    Altere o valor na Linha 3 e Coluna 3 na Matriz 2 : 4
+    Altere o valor na Linha 3 e Coluna 4 na Matriz 2 : 5
+    Altere o valor na Linha 4 e Coluna 0 na Matriz 2 : 6
+    Altere o valor na Linha 4 e Coluna 1 na Matriz 2 : 7
+    Altere o valor na Linha 4 e Coluna 2 na Matriz 2 : 8
+    Altere o valor na Linha 4 e Coluna 3 na Matriz 2 : 9
+    Altere o valor na Linha 4 e Coluna 4 na Matriz 2 : 0
+
+
+    A matriz resultante está exibida abaixo: 
+    30  35  40  45  0  
+    0   0   0   0   0  
+    30  35  40  45  0  
+    0   0   0   0   0  
+    30  35  40  45  0
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* < Exercício 5 > */
+
+#include <stdio.h>
+#define TAM 5
+
+/* Chamando funções situadas após "int main" */
+void clean_buf(char clear);
+
+/* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    char clear;
+    int x[5] = {},
+        y[5] = {},
+        c[5] = {},
+        d[5] = {},
+        cont1 = 0,
+        cont2 = 0;
+
+    printf("\nInsira uma sequência de números inteiros distintos no Vetor X:");
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+    {
+        printf("\n\n> ");
+
+        /* Validação para a entrada de caracteres */
+        while (scanf("%d", &x[cont1]) == 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n>");
+        }
+    }
+
+    printf("\n\nInsira uma sequência de números inteiros distintos no Vetor Y:");
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+    {
+        printf("\n\n> ");
+
+        /* Mais validação para a entrada de caracteres */
+        while (scanf("%d", &y[cont1]) == 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n>");
+        }
+    }
+
+    /* Soma de cada posição do vetor X com sua posição correspondente em Y */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        printf("\nA soma da posição [%d] das matrizes X e Y: %d\n\n", cont1, x[cont1] + y[cont1]);
+
+    printf("\n\n");
+
+    /* Produto de cada posição do vetor X com sua posição correspondente em Y */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        printf("O produto da posição [%d] das matrizes X e Y: %d\n\n", cont1, x[cont1] * y[cont1]);
+
+    printf("\n\n");
+    printf("A sequência de termos contida em X que não pertence a Y é:\n\n");
+
+    /* "Marca" quais valores são repetidos tanto na matriz X quanto na Y */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        for (cont2 = 0; cont2 < TAM; ++cont2)
+        {
+            if (x[cont1] == y[cont2])
+                ++c[cont1];
+            if (y[cont1] == x[cont2])
+                ++d[cont1];
+        }
+
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        if (c[cont1] == 0)
+            printf("O valor X [%d] = %d\n\n", cont1, x[cont1]);
+
+    printf("A sequência de termos pertencentes tanto a X quanto a Y :\n\n");
+
+    /* Avalia a intersecção dos valroes contidos tanto em X quanto em Y */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+        if (c[cont1] > 0)
+            printf("O valor X [%d] = %d\n\n", cont1, x[cont1]);
+
+    printf("A união da sequência de termos contida tanto em X quanto em Y :\n\n");
+
+    /* União dos vetores X e Y equivalente aos termos contidos apenas em X
+       apenas em Y e na intersecção de ambos os vetores.
+    */
+    for (cont1 = 0; cont1 < TAM; ++cont1)
+    {
+        if (c[cont1] == 0)
+            printf("A união de termos contidos em (X U Y) [%d] = %d\n\n", cont1, x[cont1]);
+        if (d[cont1] == 0)
+            printf("A união de termos contidos em (X U Y) [%d] = %d\n\n", cont1, y[cont1]);
+        if (c[cont1] > 0)
+            printf("A união de termos contidos em (X U Y) [%d] = %d\n\n", cont1, x[cont1]);
+    }
+
+    return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+/*
+    Valores testados no programa:
+
+    (Entradas):
+    1
+    2
+    3
+    4
+    5
+    8
+    7
+    6
+    5
+    4
+
+
+    (Saídas):
+    Insira uma sequência de números inteiros distintos no Vetor X:
+
+    > 1
+
+
+    > 2
+
+
+    > 3
+
+
+    > 4
+
+
+    > 5
+
+
+    Insira uma sequência de números inteiros distintos no Vetor Y:
+
+    > 8
+
+
+    > 7
+
+
+    > 6
+
+
+    > 5
+
+
+    > 4
+
+    A soma da posição [0] das matrizes X e Y: 9
+
+
+    A soma da posição [1] das matrizes X e Y: 9
+
+
+    A soma da posição [2] das matrizes X e Y: 9
+
+
+    A soma da posição [3] das matrizes X e Y: 9
+
+
+    A soma da posição [4] das matrizes X e Y: 9
+
+
+
+    O produto da posição [0] das matrizes X e Y: 8
+
+    O produto da posição [1] das matrizes X e Y: 14
+
+    O produto da posição [2] das matrizes X e Y: 18
+
+    O produto da posição [3] das matrizes X e Y: 20
+
+    O produto da posição [4] das matrizes X e Y: 20
+
+
+
+    A sequência de termos contida em X que não pertence a Y é:
+
+    O valor X [0] = 1
+
+    O valor X [1] = 2
+
+    O valor X [2] = 3
+
+    A sequência de termos pertencentes tanto a X quanto a Y :
+
+    O valor X [3] = 4
+
+    O valor X [4] = 5
+
+    A união da sequência de termos contida tanto em X quanto em Y :
+
+    A união de termos contidos em (X U Y) [0] = 1
+
+    A união de termos contidos em (X U Y) [0] = 8
+
+    A união de termos contidos em (X U Y) [1] = 2
+
+    A união de termos contidos em (X U Y) [1] = 7
+
+    A união de termos contidos em (X U Y) [2] = 3
+
+    A união de termos contidos em (X U Y) [2] = 6
+
+    A união de termos contidos em (X U Y) [3] = 4
+
+    A união de termos contidos em (X U Y) [4] = 5
+
+
+X ----------------------------------------------------- X
+
+    (Entradas - Tratamento de erro):
+    pp
+    3
+    4
+    5
+    q
+    1
+    2
+    9
+    7
+    g
+    6
+    5
+    43
+
+
+
+    (Saídas):
+    Insira uma sequência de números inteiros distintos no Vetor X:
+
+    > pp
+
+     [ Valor Inválido ] 
+
+    >3
+
+
+    > 4
+
+
+    > 5
+
+
+    > q
+
+     [ Valor Inválido ] 
+
+    >1
+
+
+    > 2
+
+
+    Insira uma sequência de números inteiros distintos no Vetor Y:
+
+    > 9
+
+
+    > 7
+
+
+    > g
+
+     [ Valor Inválido ] 
+
+    >6
+
+
+    > 5
+
+
+    > 43
+
+    A soma da posição [0] das matrizes X e Y: 12
+
+
+    A soma da posição [1] das matrizes X e Y: 11
+
+
+    A soma da posição [2] das matrizes X e Y: 11
+
+
+    A soma da posição [3] das matrizes X e Y: 6
+
+
+    A soma da posição [4] das matrizes X e Y: 45
+
+
+
+    O produto da posição [0] das matrizes X e Y: 27
+
+    O produto da posição [1] das matrizes X e Y: 28
+
+    O produto da posição [2] das matrizes X e Y: 30
+
+    O produto da posição [3] das matrizes X e Y: 5
+
+    O produto da posição [4] das matrizes X e Y: 86
+
+
+
+    A sequência de termos contida em X que não pertence a Y é:
+
+    O valor X [0] = 3
+
+    O valor X [1] = 4
+
+    O valor X [3] = 1
+
+    O valor X [4] = 2
+
+    A sequência de termos pertencentes tanto a X quanto a Y :
+
+    O valor X [2] = 5
+
+    A união da sequência de termos contida tanto em X quanto em Y :
+
+    A união de termos contidos em (X U Y) [0] = 3
+
+    A união de termos contidos em (X U Y) [0] = 9
+
+    A união de termos contidos em (X U Y) [1] = 4
+
+    A união de termos contidos em (X U Y) [1] = 7
+
+    A união de termos contidos em (X U Y) [2] = 6
+
+    A união de termos contidos em (X U Y) [2] = 5
+
+    A união de termos contidos em (X U Y) [3] = 1
+
+    A união de termos contidos em (X U Y) [4] = 2
+
+    A união de termos contidos em (X U Y) [4] = 43
+
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* < Exercício 6 > */
+
+#include <stdio.h>
+
+/* Chamando funções situadas após "int main" */
+void clean_buf(char clear);
+
+/* Função principal não recebe argumentos */
+int main (void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    char clear;
+    float mtrz[5][4],
+          nt[5] = {},
+          max = 0.,
+          media = 0.;
+    int cont1 = 0,
+        cont2 = 0,
+        rec = 0;
+
+    /* Inicializando cada posição da matriz com zero */
+    for (cont1 = 0; cont1 < 5; ++cont1)
+        for (cont2 = 0; cont2 < 4; ++cont2)
+            mtrz[cont1][cont2] = 0;
+
+    /* Alterando primeira coluna da matriz - Matrícula */
+    printf("\nInsira o número da matrícula dos alunos na Coluna 1:");
+
+    for (cont1 = 0; cont1 < 5; ++cont1)
+    {
+        printf("\n\n> ");
+
+        /* Validação para entrada de caracteres */
+        while (scanf("%f", &mtrz[cont1][0]) == 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n> ");
+        }
+    }
+
+    /* Alterando segunda coluna da matriz - Média das provas */
+    printf("\n\nInsira a média das provas de cada aluno na Coluna 2:");
+
+    for (cont1 = 0; cont1 < 5; ++cont1)
+    {
+        printf("\n\n> ");
+
+        while (scanf("%f", &mtrz[cont1][1]) == 0 || mtrz[cont1][1] < 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n> ");
+        }
+    }
+
+    /* ALterando terceira coluna da matriz - Média dos trabalhos */
+    printf("\n\nInsira a média dos trabalhos na Coluna 3:");
+
+    for (cont1 = 0; cont1 < 5; ++cont1)
+    {
+        printf("\n\n> ");
+
+        while (scanf("%f", &mtrz[cont1][2]) == 0 || mtrz[cont1][2] < 0)
+        {
+            clean_buf(clear);
+            printf("\n [ Valor Inválido ] \n\n> ");
+        }
+    }
+
+    printf("\n");
+
+    /* Cálculo da onta final + Impressão das notas de caad aluno */
+    for (cont1 = 0; cont1 < 5; ++cont1)
+    {
+        nt[cont1] = (mtrz[cont1][1] + mtrz[cont1][2]) / 2; 
+
+        printf("Nota final do Aluno %d : %.2f\n\n", cont1 + 1, nt[cont1]);
+    }
+
+    /* Variável "max" recebe um valor aleatório dentre os alunos */
+    max = nt[0];
+
+    /* Armazenar a maior nota final, bem como sua posição */
+    for (cont1 = 0; cont1 < 5; ++cont1)
+    {
+        if (nt[cont1] > max)
+        {
+            max = nt[cont1];
+            rec = cont1;    /* Variável "rec" recebe posição do aluno com maior nota */
+        }
+    }
+
+    printf("Número da matrícula do aluno com a maior nota final: %d\n\n", (int)(mtrz[rec][0]));
+
+    /* Somatório das notas finais */
+    for (cont1 = 0; cont1 < 5; ++cont1)
+        media += nt[cont1];
+    
+    printf("A média aritmética das notas finais é : %.2f\n\n", media / 5.);
+
+ return 0;
+}
+
+/* Função permite limpar conteúdo armazenado no buffer de entrada */
+void clean_buf(char clear)
+{
+    /* Conclui após buffer estiver limpo */
+    while ((clear = getchar()) != '\n' && clear != EOF);
+}
+
+  /*
+    Valores testados no programa:
+
+    (Entradas):
+    12
+    23
+    34
+    45
+    56
+    3.4
+    5.8
+    1.2
+    9.8
+    5.4
+    3
+    6
+    8.5
+    9.4
+    1.2
+
+
+
+    (Saídas):
+    Insira o número da matrícula dos alunos na Coluna 1:
+
+    > 12
+
+
+    > 23
+
+
+    > 34
+
+
+    > 45
+
+
+    > 56
+
+
+    Insira a média das provas de cada aluno na Coluna 2:
+
+    > 3.4
+
+
+    > 5.8
+
+
+    > 1.2
+
+
+    > 9.8
+
+
+    > 5.4
+
+
+    Insira a média dos trabalhos na Coluna 3:
+
+    > 3
+
+
+    > 6
+
+
+    > 8.5
+
+
+    > 9.4
+
+
+    > 1.2
+
+    Nota final do Aluno 1 : 3.20
+
+    Nota final do Aluno 2 : 5.90
+
+    Nota final do Aluno 3 : 4.85
+
+    Nota final do Aluno 4 : 9.60
+
+    Nota final do Aluno 5 : 3.30
+
+    Número da matrícula do aluno com a maior nota final: 45
+
+    A média aritmética das notas finais é : 5.37
+
+
+X ----------------------------------------------------- X
+
+    (Entradas - Tratamento de erro):
+    q
+    12
+    23
+    34
+    45
+    t
+    56
+    4.5
+    6.7
+    3.9
+    8.1
+    4.9
+    3
+    6
+    5
+    8.5
+    9.0
+    
+
+
+    (Saídas):
+    Insira o número da matrícula dos alunos na Coluna 1:
+
+    > q
+
+     [ Valor Inválido ] 
+
+    > 12
+
+
+    > 23
+
+
+    > 34
+
+
+    > 45
+
+
+    > t
+
+     [ Valor Inválido ] 
+
+    > 56
+
+
+    Insira a média das provas de cada aluno na Coluna 2:
+
+    > 4.5
+
+
+    > 6.7
+
+
+    > 3.9
+
+
+    > 8.1
+
+
+    > 4.9
+
+
+    Insira a média dos trabalhos na Coluna 3:
+
+    > 3
+
+
+    > 6
+
+
+    > 5
+
+
+    > 8.5
+
+
+    > 9.0
+
+    Nota final do Aluno 1 : 3.75
+
+    Nota final do Aluno 2 : 6.35
+
+    Nota final do Aluno 3 : 4.45
+
+    Nota final do Aluno 4 : 8.30
+
+    Nota final do Aluno 5 : 6.95
+
+    Número da matrícula do aluno com a maior nota final: 45
+
+    A média aritmética das notas finais é : 5.96
+
+
+*/

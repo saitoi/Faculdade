@@ -1,0 +1,476 @@
+/*
+
+Programa: Lista 4A ;
+Autor: Pedro Henrique Honorio Saito ;
+Data : 29/09/2022 ;
+Descrição: Praticar comandos de teste e repetição ;
+
+*/
+
+/* Exercício 1 */
+
+#include <stdio.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int numl = 0, numc = 0;
+    int cont1 = 0, cont2 = 0;
+
+    /* Atribuindo o número de linhas e colunas respectivamente às variáveis "numl" e "numc" */
+    printf("Insira o valor correspondente ao número de linhas a ser impressa: ");
+    
+    /* Validação da entrada para caracteres e valores negativos ou nulos */
+    while(scanf("%d", &numl) == 0 || numl <= 0)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+    }
+    printf("Insira o valor correspondente ao número de linhas a ser impressa: ");
+
+    /* Validação da entrada para caracteres, valores negativos ou nulos */
+    while(scanf("%d", &numc) == 0 || numc <= 0)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+    }
+
+    getchar(); /* Função getchar() pega caractere "\n" armazenado no buffer */
+
+    printf("\n");
+
+    /* 
+        O comando "for" mais externo altera permite a alteração da linha de impressão dos
+        asteriscos, enquanto o segundo "for" permite a impressão dos asteriscos continuamente.
+    */
+    for (cont1 = 0 ; cont1 < numl ; ++cont1)
+    {
+        for (cont2 = 0 ; cont2 < numc ; ++cont2)
+        printf("*");
+
+        printf("\n");
+    }
+    printf("\n");
+
+ return 0;
+}
+
+/*
+    Valores testados para o programa:
+
+    (Entradas):
+    5
+    10
+
+
+    (Saída):
+    Insira o valor correspondente ao número de linhas a ser impressa:
+    Insira o valor correspondente ao número de linhas a ser impressa:
+    
+    **********
+    **********
+    **********
+    **********
+    **********
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 2 */ 
+
+#include <stdio.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int numl = 0;
+    int cont1 = 0, cont2 = 0;
+
+    /* Atribuindo o valor correspondente ao número de linhas à variável "numl" */
+    printf("Insira o valor correspondente ao número de linhas a ser impresssa: ");
+
+    /* Validação da entrada para caracteres e valores negativos ou nulos */
+    while(scanf("%d", &numl) == 0 || numl <= 0)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+    }
+    
+    getchar(); /* Função getchar() armazena caractere "\n" presente no buffer */
+
+    printf("\n");
+
+    /* Comando "for" permite a impressão dos caracteres "*", decrementando uma unidade
+       a cada linha.
+    */
+    for (cont1 = 0 ; cont1 <= numl ; ++cont1)
+    {
+        for (cont2 = 0 ; cont2 <= cont1 ; ++cont2)
+            printf("*");
+
+        printf("\n");
+
+    }
+    printf("\n");
+
+ return 0;
+}
+
+/* 
+    (Entrada):
+    7
+
+
+    (Saída):
+    Insira o valor correspondente ao número de linhas a ser impresssa: 
+
+    *
+    **
+    ***
+    ****
+    *****
+    ******
+    *******
+    ********
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 3 */
+
+#include <stdio.h>
+
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int numl = 0;
+    int cont1 = 0, cont2 = 0;
+
+    /* Atribuindo o valor correspondente ao número de linhas a variável "numl" */ 
+    printf("Insira o valor correspondente ao número de linhas a ser impresssa: ");
+
+    /* Validação da entrada para caracteres e valores negativos ou nulos */
+    while(scanf("%d", &numl) == 0 || numl <= 0)
+    {
+        getchar();
+        printf("\n [ Valor inválido ] \n\n>");
+    }
+    getchar(); /* Função getchar() armazena caractere "\n" presente no buffer */
+
+    printf("\n");
+
+    /* Comando "for" permite a impressão dos caracteres "*", incrementando uma unidade
+       a cada linha.
+    */
+    for (cont1 = 0 ; cont1 <= numl ; ++cont1)
+    {
+        for (cont2 = 0 ; cont2 <= (numl - cont1) ; ++cont2)
+            printf("*");
+
+        printf("\n");
+
+    }
+    printf("\n");
+
+ return 0;
+}
+
+/*
+    (Entrada):
+    12
+
+
+
+
+    (Saída):
+    Insira o valor correspondente ao número de linhas a ser impresssa: 
+
+    *************
+    ************
+    ***********
+    **********
+    *********
+    ********
+    *******
+    ******
+    *****
+    ****
+    ***
+    **
+    *
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 4 */
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int i = 0, n = 0;
+    int max = 100;
+
+    /* Inicializa o gerador de números aleatórios */
+    srand(time(NULL));
+
+    /* Permite a geração de números aleatórios atribuídos à variável "n" */
+    for (i = 0 ; i < 10 ; ++i)
+    {
+        /* Valores para a variável "n" estão compreendidos entre 0 e 100 */
+        n = rand() % max;
+
+        /* Impressão desses resultados */
+        printf("O valor \"aleatório\" a ser impresso é %d\n\n", n);
+    }
+
+ return 0;
+}
+
+/*
+    (Saída):
+    O valor "aleatório" a ser impresso é 36
+
+    O valor "aleatório" a ser impresso é 53
+    
+    O valor "aleatório" a ser impresso é 52
+    
+    O valor "aleatório" a ser impresso é 16
+    
+    O valor "aleatório" a ser impresso é 77
+    
+    O valor "aleatório" a ser impresso é 24
+    
+    O valor "aleatório" a ser impresso é 53
+    
+    O valor "aleatório" a ser impresso é 2
+    
+    O valor "aleatório" a ser impresso é 18
+    
+    O valor "aleatório" a ser impresso é 92
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 5 */
+
+  /* Declarando e inicializando variáveis inteiras e em ponto flutuante */
+    int i = 0, numr = 0; 
+    float contp = 0;
+
+    /* Inicializa o gerador de números aleatórios */
+    srand(time(NULL));
+
+    /* Permite a geração de 1000000 de números "aleatórios" */
+    for(i = 0 ; i < vzs ; ++i)
+    {
+        /* Valores compreendidos no intervalo de 0 a RAND_MAX (= valor máximo retornado pela função "rand()") */
+        numr = rand() % RAND_MAX;
+
+        /* Verifica se número gerado é par e, portanto, incrementa + 1 em contp ("contador de pares") */
+        if(numr % 2 == 0)
+        ++contp;
+    }
+
+    /* Imprime o número de pares determinado pela variável contador de números pares */
+    printf("A quantidade de pares é %.0f\n", contp);
+    printf("A quantidade de ímpares é %.0f\n\n", vzs - contp);
+
+    /* Calcula a frequência (porcentagem) da aparição de valores pares e ímpares */
+    printf("A frequência de números pares foi de %.2f%%\n", (contp / vzs) * 100);
+    printf("A frequência de números ímpares foi de %.2f%%\n\n", ((vzs - contp) / vzs) * 100);
+
+ return 0;
+}
+
+/*
+    (Saída):
+    A quantidade de pares é 500425
+    A quantidade de ímpares é 499575
+    
+    A frequência de números pares foi de 50.04%
+    A frequência de números ímpares foi de 49.96%
+
+    Resolução:
+    A frequência de aparição de números pares e ímpares no programa resulta em porcentagens
+    semelhantes e compreendidas no intervalo de 49% a 50% para cada pares e / ou ímpares.    
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 6 */
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#define vzs 6000000.
+
+int main(void)
+{
+    /* Declarando e inicializando variáveis inteiras */
+    int i = 0, dado = 0; 
+    int f1 = 0, f2 = 0, f3 = 0, f4 = 0, f5 = 0, f6 = 0;
+
+    /* Inicializa o gerador de números aleatórios */
+    srand(time(NULL));
+
+    /* Permite a geração de números aleatórios para a variável dado ("faces do dado") */
+    for(i = 0 ; i < vzs ; ++i)
+    {
+        /* Restringe os valores gerados para o intervalo de 0 a 5 */
+        dado = (rand() % 6) + 1;
+
+        /* Incrementa cada variável correspondente às diferentes faces do dado numeradas de 1 a 6 */
+        switch(dado)
+        {
+            case 1:
+            ++f1;
+            break;
+
+            case 2:
+            ++f2;
+            break;
+
+            case 3:
+            ++f3;
+            break;
+
+            case 4:
+            ++f4;
+            break;
+
+            case 5:
+            ++f5;
+            break;
+
+            case 6:
+            ++f6;
+            break;
+        }
+    }
+
+    /* Imprime a frequência de aparição de cada face do dado */
+    printf("A frequência com que a face 1 do dado apareceu foi %.2f%%\n", (f1 / vzs) * 100);
+    printf("A frequência com que a face 2 do dado apareceu foi %.2f%%\n", (f2 / vzs) * 100);
+    printf("A frequência com que a face 3 do dado apareceu foi %.2f%%\n", (f3 / vzs) * 100);
+    printf("A frequência com que a face 4 do dado apareceu foi %.2f%%\n", (f4 / vzs) * 100);
+    printf("A frequência com que a face 5 do dado apareceu foi %.2f%%\n", (f5 / vzs) * 100);
+    printf("A frequência com que a face 6 do dado apareceu foi %.2f%%\n\n", (f6 / vzs) * 100);
+    
+ return 0;
+}
+
+/*
+    (Saída):
+    A frequência com que a face 1 do dado apareceu foi 16.64%
+    A frequência com que a face 2 do dado apareceu foi 16.68%
+    A frequência com que a face 3 do dado apareceu foi 16.68%
+    A frequência com que a face 4 do dado apareceu foi 16.64%
+    A frequência com que a face 5 do dado apareceu foi 16.70%
+    A frequência com que a face 6 do dado apareceu foi 16.67%
+
+    Resolução:
+    A solução "rand() % 6" permite a geração de números compreendidos no intervalo de 0 a 5 e, 
+    portanto, deve se adicionar uma unidade para se tornarem valores de 1 a 5. Os valores resultantes
+    para as frequências de aparição de cada face tem média de 16.67%
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 7a */
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define vzs 1000000.f /* Definindo a constante vzs ("vzs") como 1000000 em ponto flutuante */
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variávies inteiras */
+    int i = 0, dentro = 0;
+    float x = 0., y = 0.;
+
+    /* Inicializa o gerador de números aleatórios */
+    srand(time(NULL));
+
+    /* Permite a geração de números aleatórios para as coordenadas x e y 1000000 de vezes cada */
+    for(i = 0 ; i < vzs ; ++i)
+    {
+        /* Valores compreendidos no intervalo de 0 a RAND_MAX tanto para x quanto y */
+        x = (float) rand() / RAND_MAX;
+        y = (float) rand() / RAND_MAX;
+
+        /* Verifica se a distância de cada coordenada gerada em relação à origem é menor ou igual a 1.0  */
+        if((x*x + y*y) <= 1.0)
+        ++dentro;
+    }
+
+    /* Imprime a frequeência dos pontos compreendidos no interior da circunferência, i.e., pi */
+    printf("A frequência dos pontos no interior da circunferência foi de %f\n\n", 4 * dentro / vzs);
+
+ return 0;
+}
+
+/* 
+    (Saída):
+    A frequência dos pontos no interior da circunferência foi de 3.139808
+
+*/
+
+X ------------------------------------------------------------------------------------- X
+
+/* Exercício 7b */
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define vzs 9999999.f /* Definindo a constante vzs ("vzs") como 1000000 em ponto flutuante */
+
+ /* Função principal não recebe argumentos */
+int main(void)
+{
+    /* Declarando e inicializando variávies inteiras */
+    int i = 0, dentro = 0;
+    float x = 0., y = 0.;
+
+    /* Inicializa o gerador de números aleatórios */
+    srand(time(NULL));
+
+    /* Permite a geração de números aleatórios para as coordenadas x e y 1000000 de vezes cada */
+    for(i = 0 ; i < vzs ; ++i)
+    {
+        /* Valores compreendidos no intervalo de 0 a RAND_MAX tanto para x quanto y */
+        x = (float) rand() / RAND_MAX;
+        y = (float) rand() / RAND_MAX;
+
+        /* Verifica se a distância de cada coordenada gerada em relação à origem é menor ou igual a 1.0  */
+        if((x*x + y*y) <= 1.0)
+        ++dentro;
+    }
+
+    /* Imprime a frequeência dos pontos compreendidos no interior da circunferência, i.e., pi */
+    printf("A frequência dos pontos no interior da circunferência foi de %f\n\n", 4 * dentro / vzs);
+
+ return 0;
+}
+
+/*
+    (Saída):
+    A frequência dos pontos no interior da circunferência foi de 3.142189
+
+*/
