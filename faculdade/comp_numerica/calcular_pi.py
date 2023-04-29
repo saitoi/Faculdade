@@ -9,4 +9,5 @@ def calcular_pi(n):
     return pi*2
 
 for i in range():
-    print("O valor obtido para pi : ",calcular_pi(5))
+    print("O valor obtido para pi (n=):",calcular_pi(5))
+    print("Erro percentual :")
