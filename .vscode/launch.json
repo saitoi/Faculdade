@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "justMyCode": true,
+      "justMyCode": true
     },
     {
       "name": "C/C++: clang++ Compilar e depurar o arquivo ativo",
@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/Users/pedrosaito/Documents/code/codigo_facul",
-      "program": "/Users/pedrosaito/Documents/code/codigo_facul/build/Debug/outDebug",
+      "cwd": "/Users/pedrosaito/Documents/codigo/codigo_facul",
+      "program": "/Users/pedrosaito/Documents/codigo/codigo_facul/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
