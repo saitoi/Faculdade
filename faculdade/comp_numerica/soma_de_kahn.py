@@ -14,4 +14,4 @@ def kahan_sum(numbers):
 
 numbers = [1, 2, 3, 4, 5]
 
-print(kahan_sum(numbers))
+print("O resultado da soma utilizando o algoritmo de Kahn foi : ",kahan_sum(numbers))
