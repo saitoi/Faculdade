@@ -13,7 +13,7 @@
       "name": "C/C++: clang++ Compilar e depurar o arquivo ativo",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}/dit/${fileBasenameNoExtension}",
+      "program": "${fileDirname}/exe/${fileBasenameNoExtension}",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",

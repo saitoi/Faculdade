@@ -1,4 +1,4 @@
-# Refazendo Letra b com Soma de Kahn
+# Refazendo Letra b sem Fatorial
 
 import math
 

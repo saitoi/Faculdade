@@ -11,7 +11,7 @@
                 "-fansi-escape-codes",
                 "${file}",
                 "-o",
-                "${fileDirname}/dit/${fileBasenameNoExtension}"
+                "${fileDirname}/exe/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
