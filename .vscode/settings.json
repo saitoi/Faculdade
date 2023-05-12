@@ -104,7 +104,7 @@
     "locale.h": "c",
     "stdio.h": "c"
   },
-  "C_Cpp.errorSquiggles": "Enabled",
+  "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp_Runner.useAddressSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false
 }
