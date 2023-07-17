@@ -31,8 +31,8 @@ void bubble_sort(int v[tam]){
 }
 
 int main(){
- int v[tam];
- bubble_sort(v);
- print_vector(v);
- return 0;
+int v[tam];
+bubble_sort(v);
+print_vector(v);
+return 0;
 }

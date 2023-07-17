@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/Users/pedrosaito/Documents/codigo/codigo_facul",
-      "program": "/Users/pedrosaito/Documents/codigo/codigo_facul/build/Debug/outDebug",
+      "cwd": "/Users/pedrosaito/Documents/codigo/faculdade",
+      "program": "/Users/pedrosaito/Documents/codigo/faculdade/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
