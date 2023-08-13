@@ -8,8 +8,8 @@
 
 int main(void) {
     FILE *arquivo_sistema = NULL;
-    Cinema *cinema = aloca_cinema();
-    inicializar(cinema);
+    Cinema *cinema = alocar_cinema();
+    inicializar_cinema(cinema);
 
     if ((arquivo_sistema = verificar_arquivo(ARQUIVO_CINEMA)) == NULL)
         arquivo_sistema = criar_arquivo(ARQUIVO_CINEMA);
@@ -20,16 +20,16 @@ int main(void) {
         exit(1);
     }
     else
-        carregar_arquivo(arquivo_sistema, &cinema);
+        carregar_arquivo(arquivo_sistema, cinema);
 
     while (1) {
         int sala_escolhida, ingressos_a_comprar;
         Poltrona *poltronas_escolhidas = NULL;
 
-        exibir_salas_filmes();
+        exibir_salas_filmes(cinema);
         sala_escolhida = selecionar_sala_filme(cinema);
 
-        /*Corrige a entrada ao padrao 0-indexado de numeracao de salas utilizado no codigo*/
+        /* Corrige a entrada ao padrao 0-indexado de numeracao de salas utilizado no codigo */
         sala_escolhida--;
 
         if (sala_escolhida == -1) {
@@ -41,12 +41,12 @@ int main(void) {
         if (poltronas_escolhidas == NULL)
             continue;
 
-        comprar_ingressos(cinema->salas, poltronas_escolhidas, ingressos_a_comprar);
+        comprar_ingressos(&(cinema->salas[sala_escolhida]), poltronas_escolhidas, ingressos_a_comprar);
 
         free(poltronas_escolhidas);
     }
 
-    salvar_arquivo(arquivo_sistema, &cinema);
+    salvar_arquivo(arquivo_sistema, cinema);
 
     return 0;
 }

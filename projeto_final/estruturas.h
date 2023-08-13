@@ -13,6 +13,8 @@ typedef struct sala {
     int carteiras_estudantis[MAX_INGRESSOS];
     int codigos_itasil[MAX_INGRESSOS];
     int ingressos_disp_salas;
+    int num_sala;
+    char nome_filme[MAX_NOME_FILME];
 } Sala;
 
 typedef struct cinema {

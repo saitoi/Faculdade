@@ -40,6 +40,19 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "C/C++: gcc Compilar e depurar o arquivo ativo",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: gcc arquivo de build ativo"
     }
   ]
 }

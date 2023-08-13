@@ -102,7 +102,8 @@
     "map": "cpp",
     "stdlib.h": "c",
     "locale.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "estruturas.h": "c"
   },
   "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp_Runner.useAddressSanitizer": false,

@@ -8,11 +8,11 @@ FILE *verificar_arquivo(const char *nome_arquivo) {
     return fopen(nome_arquivo, "rb+");
 }
 
-void carregar_arquivo(FILE *arquivo, Cinema **cinema) {
+void carregar_arquivo(FILE *arquivo, Cinema *cinema) {
     if (arquivo_vazio(arquivo))
         return;
 
-    if (fread(*cinema, sizeof(Cinema), 1, arquivo) != 1) {
+    if (fread(cinema, sizeof(Cinema), 1, arquivo) != 1) {
         printf("Erro de leitura no arquivo.\n");
         exit(1);
     }
@@ -20,13 +20,13 @@ void carregar_arquivo(FILE *arquivo, Cinema **cinema) {
     fclose(arquivo);
 }
 
-void salvar_arquivo(FILE *arquivo, Cinema **cinema) {
+void salvar_arquivo(FILE *arquivo, Cinema *cinema) {
     if ((arquivo = fopen(ARQUIVO_CINEMA, "wb+")) == NULL) {
         printf("O arquivo nao pode ser aberto.\n");
         return;
     }
 
-    if (fwrite(*cinema, sizeof(Cinema), 1, arquivo) != 1)
+    if (fwrite(cinema, sizeof(Cinema), 1, arquivo) != 1)
         printf("Erro de escrita no arquivo.\n");
 
     fclose(arquivo);
