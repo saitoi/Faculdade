@@ -1,0 +1,12 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/pedrosaito/Documents/codigo/Faculdade/Estrutura de Dados/Trabalho 3/output/kruskalFinal'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _inicializarVertice, symObjAddr: 0x0, symBinAddr: 0x100003BC4, symSize: 0xCC }
+  - { offsetInCU: 0x96, offset: 0x96, size: 0x8, addend: 0x0, symName: _inicializarVertice, symObjAddr: 0x0, symBinAddr: 0x100003BC4, symSize: 0xCC }
+  - { offsetInCU: 0xE8, offset: 0xE8, size: 0x8, addend: 0x0, symName: _find, symObjAddr: 0xCC, symBinAddr: 0x100003C90, symSize: 0x4C }
+  - { offsetInCU: 0x11E, offset: 0x11E, size: 0x8, addend: 0x0, symName: _une, symObjAddr: 0x118, symBinAddr: 0x100003CDC, symSize: 0xA4 }
+  - { offsetInCU: 0x15E, offset: 0x15E, size: 0x8, addend: 0x0, symName: _calcularPeso, symObjAddr: 0x1BC, symBinAddr: 0x100003D80, symSize: 0x98 }
+  - { offsetInCU: 0x1BA, offset: 0x1BA, size: 0x8, addend: 0x0, symName: _criarAresta, symObjAddr: 0x254, symBinAddr: 0x100003E18, symSize: 0x94 }
+  - { offsetInCU: 0x232, offset: 0x232, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x2E8, symBinAddr: 0x100003EAC, symSize: 0xB8 }
+...

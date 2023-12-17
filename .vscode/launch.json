@@ -18,7 +18,7 @@
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],
-      "externalConsole": true,
+      "externalConsole": false,
       "MIMode": "lldb",
       "preLaunchTask": "C/C++: clang++ arquivo de build ativo"
     },
@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "/Users/pedrosaito/Documents/codigo/Faculdade",
+      "program": "/Users/pedrosaito/Documents/codigo/Faculdade/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
